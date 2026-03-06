@@ -1,86 +1,104 @@
+/* Variables de color y fuentes */
 :root {
-    --bg-color: #f9f8f6;
-    --text-color: #1a1a1a;
-    --accent-color: #3d4a3e; /* Verde oscuro elegante */
-    --font-serif: 'Prata', serif;
-    --font-sans: 'Inter', sans-serif;
+    --crema: #f4f1ee;
+    --oscuro: #1a1a1a;
+    --serif: 'Prata', serif;
+    --sans: 'Inter', sans-serif;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    font-family: var(--font-sans);
-    line-height: 1.6;
+    background-color: var(--crema);
+    color: var(--oscuro);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Navegación */
+/* Menú de navegación */
 .navbar {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    padding: 2rem 5%;
-    background: transparent;
+    padding: 30px 5%;
+    background-color: white;
 }
 
-.nav-links a {
-    text-decoration: none;
-    color: var(--text-color);
-    margin-right: 20px;
-    font-size: 0.9rem;
+.nav-group {
+    display: flex;
+    gap: 25px;
+    font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-.logo {
-    font-family: var(--font-serif);
-    font-size: 2rem;
-    letter-spacing: 4px;
+.nav-group.right { justify-content: flex-end; }
+
+.navbar a {
+    text-decoration: none;
+    color: var(--oscuro);
 }
 
-/* Hero Section */
+.logo {
+    font-family: var(--serif);
+    font-size: 28px;
+    letter-spacing: 5px;
+}
+
+/* Sección Hero con imagen */
 .hero {
-    height: 80vh;
-    background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), 
-                url('https://images.unsplash.com') center/cover no-repeat;
+    height: 85vh;
+    background-image: url('https://images.unsplash.com');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.hero-overlay {
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.1); /* Oscurece un poco la foto para leer el texto */
     display: flex;
     align-items: center;
-    padding: 0 10%;
+    padding-left: 8%;
 }
 
-.hero-content h1 {
-    font-family: var(--font-serif);
-    font-size: clamp(3rem, 8vw, 5rem);
+.hero-text h1 {
+    font-family: var(--serif);
+    font-size: clamp(40px, 6vw, 80px);
     color: white;
-    margin-bottom: 2rem;
-    font-weight: normal;
+    line-height: 1.1;
+    margin-bottom: 30px;
 }
 
-.btn {
-    display: inline-block;
-    padding: 1rem 2.5rem;
-    background: white;
-    color: var(--text-color);
+.btn-main {
+    background-color: white;
+    color: var(--oscuro);
+    padding: 18px 40px;
     text-decoration: none;
-    font-size: 0.9rem;
+    display: inline-block;
     transition: 0.3s;
 }
 
-.btn:hover {
-    background: var(--text-color);
+.btn-main:hover {
+    background-color: var(--oscuro);
     color: white;
 }
 
-/* Sección Intro */
-.intro {
-    padding: 100px 10%;
+/* Texto de descripción inferior */
+.description {
+    padding: 100px 5%;
     text-align: center;
 }
 
-.intro p {
-    max-width: 800px;
+.content-wrapper p {
+    max-width: 900px;
     margin: 0 auto;
-    font-size: 1.4rem;
+    font-size: clamp(20px, 2.5vw, 28px);
+    line-height: 1.5;
     font-weight: 300;
 }
