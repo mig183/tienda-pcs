@@ -1,17 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Mi Pagina Hales</title>
-    <link rel="stylesheet" href="estilo.css"> <!-- Esto une los dos archivos -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HALES | Réplica Diseño</title>
+    <!-- Fuentes elegantes de Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
+    <!-- Conexión al archivo de estilos -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav>
+
+    <!-- Navegación superior -->
+    <nav class="navbar">
+        <div class="nav-group left">
+            <a href="#">Tienda</a>
+            <a href="#">Galería</a>
+        </div>
         <div class="logo">HALES</div>
+        <div class="nav-group right">
+            <a href="#">Contacto</a>
+            <span class="cart">🛒 (0)</span>
+        </div>
     </nav>
+
+    <!-- Sección Principal (Hero) -->
     <header class="hero">
-        <h1>Flores frescas para<br>cualquier presupuesto.</h1>
-        <button>Comprar flores</button>
+        <div class="hero-overlay">
+            <div class="hero-text">
+                <h1>Flores frescas para<br>cualquier presupuesto.</h1>
+                <a href="#" class="btn-main">Comprar flores</a>
+            </div>
+        </div>
     </header>
+
+    <!-- Sección de Texto Minimalista -->
+    <section class="description">
+        <div class="content-wrapper">
+            <p>En Hales, trabajamos con una pequeña lista de productores cuidadosamente seleccionados; proveemos los pimpollos de los mejores viveros, flores silvestres y follaje de temporada.</p>
+        </div>
+    </section>
+
 </body>
 </html>
