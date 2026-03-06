@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Galaxy - FeniDev Style</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #000; font-family: sans-serif; }
+        canvas { display: block; }
+        #instructions {
+            position: absolute; top: 20px; width: 100%; text-align: center;
+            color: white; pointer-events: none; text-shadow: 0 0 10px rgba(255,105,180,0.8);
+        }
+    </style>
+</head>
+<body>
+    <div id="instructions">Mueve el mouse para rotar la galaxia</div>
+    <canvas id="bg"></canvas>
+
+    <!-- Importación de Three.js y módulos de post-procesamiento -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com",
+            "three/addons/": "https://unpkg.com"
+        }
+    }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+        // --- CONFIGURACIÓN ESCENA ---
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.querySelector('#bg'), antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+
+        const clock = new THREE.Clock();
+        const controls = new OrbitControls(camera, renderer.domElement);
+        camera.position.z = 15;
+
+        // --- CREACIÓN DE LA GALAXIA DE CORAZÓN ---
+        function getHeartPoint(t) {
+            const x = 16 * Math.pow(Math.sin(t), 3);
+            const y = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t);
+            return { x: x * 0.4, y: y * 0.4 };
+        }
+
+        const galaxyGeometry = new THREE.BufferGeometry();
+        const count = 3500;
+        const positions = new Float32Array(count * 3);
+        const colors = new Float32Array(count * 3);
+
+        for (let i = 0; i < count; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const { x, y } = getHeartPoint(angle);
+            
+            // Esparcir un poco los puntos para dar volumen
+            positions[i * 3] = x + (Math.random() - 0.5) * 2;
+            positions[i * 3 + 1] = y + (Math.random() - 0.5) * 2;
+            positions[i * 3 + 2] = (Math.random() - 0.5) * 3;
+
+            // Colores degradados rosa/blanco
+            colors[i * 3] = 1; // R
+            colors[i * 3 + 1] = Math.random() * 0.5; // G
+            colors[i * 3 + 2] = 0.7 + Math.random() * 0.3; // B
+        }
+
+        galaxyGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        galaxyGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+        const galaxyMaterial = new THREE.PointsMaterial({
+            size: 0.12,
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.8,
+            blending: THREE.AdditiveBlending
+        });
+
+        const galaxyGroup = new THREE.Points(galaxyGeometry, galaxyMaterial);
+        scene.add(galaxyGroup);
+
+        // --- POST-PROCESAMIENTO (BLOOM/BRILLO) ---
+        const composer = new EffectComposer(renderer);
+        composer.addPass(new RenderPass(scene, camera));
+
+        const bloomPass = new UnrealBloomPass(
+            new THREE.Vector2(window.innerWidth, window.innerHeight),
+            1.5, // Fuerza del brillo
+            0.4, // Radio
+            0.85 // Umbral
+        );
+        composer.addPass(bloomPass);
+
+        // --- BUCLE DE ANIMACIÓN (Tu código original adaptado) ---
+        function animate() {
+            requestAnimationFrame(animate);
+            const t = clock.getElapsedTime();
+
+            // Rotación de la galaxia (como en tu imagen)
+            galaxyGroup.rotation.y = t * 0.2;
+            galaxyGroup.rotation.z = Math.sin(t * 0.5) * 0.1;
+
+            // Movimiento suave de "flotación" para la cámara
+            camera.position.y = Math.sin(t * 0.8) * 0.5;
+
+            controls.update();
+            composer.render();
+        }
+
+        // Ajuste de ventana
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            composer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        animate();
+    </script>
+</body>
+</html>
