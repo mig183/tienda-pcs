@@ -13,7 +13,7 @@ body {
 
 .hero {
     height: 80vh;
-    background: url('https://images.unsplash.com') center/cover;
+    background: url(https://www.google.com/imgres?q=fresas&imgurl=https%3A%2F%2Felpoderdelconsumidor.org%2Fwp-content%2Fuploads%2F2022%2F11%2Ffresas-b.jpg&imgrefurl=https%3A%2F%2Felpoderdelconsumidor.org%2F2022%2F11%2Fel-poder-de-la-fresa%2F&docid=GbHXjlIMx91a7M&tbnid=feXV3tvJUlggqM&vet=12ahUKEwji2uWB6YuTAxWeSzABHZZXFTIQnPAOegQIGxAB..i&w=600&h=375&hcb=2&ved=2ahUKEwji2uWB6YuTAxWeSzABHZZXFTIQnPAOegQIGxAB) center/cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -30,3 +30,4 @@ button {
     border: none;
     cursor: pointer;
 }
+
