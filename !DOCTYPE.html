@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Atrapa las Cruces ❌</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #9e9e9e, #e0e0e0);
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+    canvas {
+      background: transparent;
+      display: block;
+    }
+    #startBtn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 15px 30px;
+      font-size: 22px;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+    #message {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 28px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 2px 2px 4px #000;
+      display: none;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="gameCanvas"></canvas>
+  <button id="startBtn">❌ Iniciar Juego ❌</button>
+  <div id="message"></div>
+
+  <script>
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let crosses = [];
+    let score = 0;
+    let timeLeft = 30; // segundos
+    let gameRunning = false;
+
+    // Dibujar cruz
+    function drawCross(x, y, size) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.scale(size, size);
+      ctx.strokeStyle = "#ff2e63"; 
+      ctx.lineWidth = 4;
+
+      ctx.beginPath();
+      ctx.moveTo(-15, -15);
+      ctx.lineTo(15, 15);
+      ctx.moveTo(15, -15);
+      ctx.lineTo(-15, 15);
+      ctx.stroke();
+
+      ctx.restore();
+    }
+
+    // Crear cruces
+    function spawnCross() {
+      let x = Math.random() * (canvas.width - 50) + 25;
+      let y = Math.random() * (canvas.height - 100) + 50;
+      let size = Math.random() * 1 + 0.8;
+      crosses.push({x, y, size});
+    }
+
+    // Actualizar juego
+    function update() {
+      if (!gameRunning) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Mostrar puntaje y tiempo
+      ctx.fillStyle = "#fff";
+      ctx.font = "24px Arial";
+      ctx.fillText("Puntos: " + score, 20, 40);
+      ctx.fillText("Tiempo: " + timeLeft, canvas.width - 150, 40);
+
+      // Dibujar cruces
+      crosses.forEach(c => drawCross(c.x, c.y, c.size));
+
+      requestAnimationFrame(update);
+    }
+
+    // Detectar clic en cruz
+    canvas.addEventListener("click", (e) => {
+      if (!gameRunning) return;
+      let rect = canvas.getBoundingClientRect();
+      let clickX = e.clientX - rect.left;
+      let clickY = e.clientY - rect.top;
+
+      crosses.forEach((c, i) => {
+        let dx = clickX - c.x;
+        let dy = clickY - c.y;
+        let dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 30) {
+          score++;
+          crosses.splice(i, 1);
+          spawnCross();
+        }
+      });
+    });
+
+    // Iniciar juego
+    document.getElementById("startBtn").addEventListener("click", () => {
+      score = 0;
+      timeLeft = 30;
+      crosses = [];
+      for (let i = 0; i < 5; i++) spawnCross();
+      gameRunning = true;
+      document.getElementById("startBtn").style.display = "none";
+      document.getElementById("message").style.display = "none";
+      update();
+
+      // Contador
+      let timer = setInterval(() => {
+        timeLeft--;
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          gameRunning = false;
+          showMessage();
+        }
+      }, 1000);
+    });
+
+    // Mostrar mensaje final
+    function showMessage() {
+      document.getElementById("message").innerHTML =
+        `Juego terminado ❌<br>Puntos: ${score}`;
+      document.getElementById("message").style.display = "block";
+      document.getElementById("startBtn").style.display = "block";
+      document.getElementById("startBtn").innerText = "🔄 Jugar otra vez";
+    }
+  </script>
+</body>
+</html>
