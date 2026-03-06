@@ -13,7 +13,7 @@ body {
 
 .hero {
     height: 80vh;
-    background: url('https://elpoderdelconsumidor.org/wp-content/uploads/2022/11/fresas-b.jpg') center/cover;
+    background: url('https://images.unsplash.com') center/cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
