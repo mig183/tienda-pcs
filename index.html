@@ -1,45 +1,51 @@
 <!DOCTYPE html>
 <html lang="es">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HALES | Réplica Diseño</title>
-    <!-- Fuentes elegantes de Google Fonts -->
+    <title>HALES | Diseño Editorial</title>
     <link href="https://fonts.googleapis.com" rel="stylesheet">
-    <!-- Conexión al archivo de estilos -->
     <link rel="stylesheet" href="style.css">
+    <title>Mi Pagina Hales</title>
+    <link rel="stylesheet" href="estilo.css"> <!-- Esto une los dos archivos -->
 </head>
 <body>
 
-    <!-- Navegación superior -->
     <nav class="navbar">
-        <div class="nav-group left">
+        <div class="nav-links">
             <a href="#">Tienda</a>
-            <a href="#">Galería</a>
-        </div>
-        <div class="logo">HALES</div>
-        <div class="nav-group right">
+            <a href="#">Nuestra Historia</a>
             <a href="#">Contacto</a>
-            <span class="cart">🛒 (0)</span>
+        </div>
+    <nav>
+        <div class="logo">HALES</div>
+        <div class="nav-icons">
+            <span>🔍</span>
+            <span>🛒 (0)</span>
         </div>
     </nav>
 
-    <!-- Sección Principal (Hero) -->
     <header class="hero">
-        <div class="hero-overlay">
-            <div class="hero-text">
-                <h1>Flores frescas para<br>cualquier presupuesto.</h1>
-                <a href="#" class="btn-main">Comprar flores</a>
-            </div>
+        <div class="hero-content">
+            <h1>Flores frescas para <br> cualquier presupuesto.</h1>
+            <a href="#" class="btn">Comprar flores</a>
         </div>
+        <h1>Flores frescas para<br>cualquier presupuesto.</h1>
+        <button>Comprar flores</button>
     </header>
 
-    <!-- Sección de Texto Minimalista -->
-    <section class="description">
-        <div class="content-wrapper">
-            <p>En Hales, trabajamos con una pequeña lista de productores cuidadosamente seleccionados; proveemos los pimpollos de los mejores viveros, flores silvestres y follaje de temporada.</p>
+    <section class="intro">
+        <div class="container">
+            <p>En Hales, trabajamos con una pequeña lista de productores cuidadosamente seleccionados, proveemos los pimpollos de los mejores viveros, flores silvestres y follaje de temporada, y los presentamos en floreros de cerámica y de vidrio personalizados.</p>
         </div>
     </section>
 
 </body>
 </html>
+
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.4rem;
+    font-weight: 300;
+}
