@@ -1,0 +1,86 @@
+:root {
+    --bg-color: #f9f8f6;
+    --text-color: #1a1a1a;
+    --accent-color: #3d4a3e; /* Verde oscuro elegante */
+    --font-serif: 'Prata', serif;
+    --font-sans: 'Inter', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+}
+
+/* Navegación */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 5%;
+    background: transparent;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    margin-right: 20px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.logo {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    letter-spacing: 4px;
+}
+
+/* Hero Section */
+.hero {
+    height: 80vh;
+    background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), 
+                url('https://thumbs.dreamstime.com/b/ilustraci%C3%B3n-de-una-configuraci%C3%B3n-ordenador-para-juegos-con-luces-ne%C3%B3n-en-habitaci%C3%B3n-oscura-gamer-el-monitor-del-pc-gaming-360047241.jpg?w=992') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+}
+
+.hero-content h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 8vw, 5rem);
+    color: white;
+    margin-bottom: 2rem;
+    font-weight: normal;
+}
+
+.btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: white;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: var(--text-color);
+    color: white;
+}
+
+/* Sección Intro */
+.intro {
+    padding: 100px 10%;
+    text-align: center;
+}
+
+.intro p {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.4rem;
+    font-weight: 300;
+}
