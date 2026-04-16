@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f5f5f5;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background: black;
+    color: white;
+}
+
+.nav-links a {
+    color: white;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.hero {
+    height: 80vh;
+    background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)),
+url('https://thumbs.dreamstime.com/b/ilustraci%C3%B3n-de-una-configuraci%C3%B3n-ordenador-para-juegos-con-luces-ne%C3%B3n-en-habitaci%C3%B3n-oscura-gamer-el-monitor-del-pc-gaming-360047241.jpg?w=992') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.productos {
+    padding: 20px;
+    text-align: center;
+}
+
+.productos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.producto {
+    background: white;
+    padding: 15px;
+    width: 250px;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.producto img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.producto:hover {
+    transform: translateY(-5px);
+    transition: 0.3s;
+}
+
+button {
+    padding: 10px;
+    background: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
