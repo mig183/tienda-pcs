@@ -2,19 +2,19 @@
 
 Proyecto web desarrollado con HTML, CSS y JavaScript que simula una tienda de computadores.
 
-##🚀 Funcionalidades
+## 🚀 Funcionalidades
 - Catálogo de productos
 - Carrito de compras
 - Interfaz interactiva con JavaScript
 - Diseño responsive
 
-##🛠️ Tecnologías
+## 🛠️ Tecnologías
 - HTML
 - CSS
 - JavaScript
 
-##🌐 Demo
+## 🌐 Demo
 https://mig183.github.io/tienda-pcs/
 
-##📂 Código
+## 📂 Código
 https://github.com/mig183/tienda-pcs
